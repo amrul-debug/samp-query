@@ -1,0 +1,247 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'samp_query'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=samp-query"
+                ],
+                "filter": {
+                    "name": "samp_query",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug example 'player_query'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=player_query",
+                    "--package=samp-query"
+                ],
+                "filter": {
+                    "name": "player_query",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in example 'player_query'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--example=player_query",
+                    "--package=samp-query"
+                ],
+                "filter": {
+                    "name": "player_query",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug example 'rules_query'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=rules_query",
+                    "--package=samp-query"
+                ],
+                "filter": {
+                    "name": "rules_query",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in example 'rules_query'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--example=rules_query",
+                    "--package=samp-query"
+                ],
+                "filter": {
+                    "name": "rules_query",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug example 'simple_query'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=simple_query",
+                    "--package=samp-query"
+                ],
+                "filter": {
+                    "name": "simple_query",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in example 'simple_query'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--example=simple_query",
+                    "--package=samp-query"
+                ],
+                "filter": {
+                    "name": "simple_query",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'integration_tests'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--test=integration_tests",
+                    "--package=samp-query"
+                ],
+                "filter": {
+                    "name": "integration_tests",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug benchmark 'benchmarks'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bench=benchmarks",
+                    "--package=samp-query"
+                ],
+                "filter": {
+                    "name": "benchmarks",
+                    "kind": "bench"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'samp-query-api'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=samp-query-api",
+                    "--package=samp-query-api"
+                ],
+                "filter": {
+                    "name": "samp-query-api",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'samp-query-api'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=samp-query-api",
+                    "--package=samp-query-api"
+                ],
+                "filter": {
+                    "name": "samp-query-api",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'samp-query-cli'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=samp-query-cli",
+                    "--package=samp-query-cli"
+                ],
+                "filter": {
+                    "name": "samp-query-cli",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'samp-query-cli'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=samp-query-cli",
+                    "--package=samp-query-cli"
+                ],
+                "filter": {
+                    "name": "samp-query-cli",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

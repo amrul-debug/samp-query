@@ -1,0 +1,32 @@
+[package]
+name = "samp-query-cli"
+version = "0.2.0"
+edition = "2021"
+authors = ["Amrul Hadi"]
+description = "Command-line interface for the SAMP Query library"
+repository = "https://github.com/amrul-debug/samp-query"
+license = "MIT"
+keywords = ["samp", "query", "cli", "gaming", "network"]
+categories = ["command-line-utilities", "game-development"]
+
+[dependencies]
+# Core library
+samp-query = { path = ".." }
+
+# CLI framework
+clap = { version = "4.3", features = ["derive"] }
+
+# Async runtime
+tokio = { version = "1.28", features = ["full"] }
+
+# Error handling
+anyhow = "1.0"
+
+# Output formatting
+colored = "2.0"
+tabled = "0.12"
+indicatif = "0.17"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

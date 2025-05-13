@@ -1,0 +1,52 @@
+[package]
+name = "samp-query"
+version = "0.2.0"
+edition = "2021"
+authors = ["Amrul Hadi"]
+description = "A production-ready implementation of the SA-MP Query Mechanism"
+repository = "https://github.com/amrul-debug/samp-query"
+license = "MIT"
+keywords = ["samp", "query", "protocol", "gaming", "network"]
+categories = ["network-programming", "api-bindings", "game-development"]
+readme = "README.md"
+
+[workspace]
+members = [
+    ".",
+    "api",
+    "cli",
+]
+
+[features]
+default = ["benchmarks"]
+benchmarks = []
+
+[dependencies]
+# Network-related dependencies
+tokio = { version = "1.28", features = ["full"] }
+socket2 = "0.5"
+bytes = "1.4"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Utilities
+rand = "0.8"
+
+[dev-dependencies]
+criterion = "0.5"
+mockall = "0.11"
+tokio-test = "0.4"
+
+[[bench]]
+name = "benchmarks"
+harness = false

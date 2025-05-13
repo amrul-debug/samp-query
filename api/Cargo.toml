@@ -1,0 +1,46 @@
+[package]
+name = "samp-query-api"
+version = "0.2.0"
+edition = "2021"
+authors = ["Amrul Hadi"]
+description = "REST API for the SAMP Query library"
+repository = "https://github.com/amrul-debug/samp-query"
+license = "MIT"
+keywords = ["samp", "query", "api", "rest", "web"]
+categories = ["web-programming", "api-bindings", "game-development"]
+
+[dependencies]
+# Core library
+samp-query = { path = ".." }
+
+# Web framework
+axum = "0.6"
+tower = "0.4"
+tower-http = { version = "0.4", features = ["trace", "cors"] }
+
+# Async runtime
+tokio = { version = "1.28", features = ["full"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Documentation
+utoipa = { version = "3.3", features = ["axum_extras"] }
+utoipa-swagger-ui = { version = "3.1", features = ["axum"] }
+
+# Configuration
+config = "0.13"
+dotenv = "0.15"
+
+# Metrics
+metrics = "0.21"
+metrics-exporter-prometheus = "0.12"
