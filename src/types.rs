@@ -6,7 +6,7 @@ use std::fmt;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ServerInfo {
-    /// Whatever the server has a password.
+    /// Whether the server has a password.
     pub password: bool,
     /// Current number of players on the server.
     pub players: u16,
