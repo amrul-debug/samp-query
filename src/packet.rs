@@ -3,6 +3,7 @@
 use crate::error::{Error, Result};
 use crate::protocol::{constants, QueryType};
 use bytes::{BufMut, BytesMut};
+use rand::Rng;
 use std::net::{IpAddr, SocketAddr};
 
 #[derive(Debug)]
@@ -81,14 +82,24 @@ impl Packet {
         password: &str,
         command: &str,
     ) -> Result<Self> {
+        if password.len() > 255 {
+            return Err(Error::InvalidResponse(
+                "RCON password too long (max 255 characters)".to_string(),
+            ));
+        }
+        
+        if command.len() > 1024 {
+            return Err(Error::InvalidResponse(
+                "RCON command too long (max 1024 characters)".to_string(),
+            ));
+        }
+        
         let mut packet = Self::create_query(server_addr, QueryType::Rcon)?;
 
         packet.data.put_u16_le(password.len() as u16);
-
         packet.data.extend_from_slice(password.as_bytes());
 
         packet.data.put_u16_le(command.len() as u16);
-
         packet.data.extend_from_slice(command.as_bytes());
 
         Ok(packet)
@@ -97,8 +108,8 @@ impl Packet {
     pub fn create_ping_query(server_addr: SocketAddr) -> Result<(Self, [u8; 4])> {
         let mut packet = Self::create_query(server_addr, QueryType::Ping)?;
 
-        let mut random_bytes = [0u8; 4];
-        rand::random_bytes(&mut random_bytes);
+        let mut rng = rand::thread_rng();
+        let random_bytes: [u8; 4] = rng.gen();
 
         packet.data.extend_from_slice(&random_bytes);
 
@@ -152,6 +163,13 @@ pub mod utils {
         Cursor<B>: Buf,
     {
         let length = cursor.get_u8() as usize;
+        
+        if length > constants::MAX_PACKET_SIZE {
+            return Err(Error::InvalidResponse(
+                "String length exceeds maximum packet size".to_string(),
+            ));
+        }
+        
         let mut bytes = vec![0u8; length];
         cursor.read_exact(&mut bytes)?;
 
@@ -163,6 +181,13 @@ pub mod utils {
         Cursor<B>: Buf,
     {
         let length = cursor.get_u16_le() as usize;
+        
+        if length > constants::MAX_PACKET_SIZE {
+            return Err(Error::InvalidResponse(
+                "String length exceeds maximum packet size".to_string(),
+            ));
+        }
+        
         let mut bytes = vec![0u8; length];
         cursor.read_exact(&mut bytes)?;
 
@@ -174,17 +199,16 @@ pub mod utils {
         Cursor<B>: Buf,
     {
         let length = cursor.get_u32_le() as usize;
+        
+        if length > constants::MAX_PACKET_SIZE {
+            return Err(Error::InvalidResponse(
+                "String length exceeds maximum packet size".to_string(),
+            ));
+        }
+        
         let mut bytes = vec![0u8; length];
         cursor.read_exact(&mut bytes)?;
 
         String::from_utf8(bytes).map_err(Error::from)
-    }
-}
-
-mod rand {
-    pub fn random_bytes(buf: &mut [u8]) {
-        for byte in buf.iter_mut() {
-            *byte = rand::random();
-        }
     }
 }
